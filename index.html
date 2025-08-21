@@ -1,63 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>reCAPTCHA Verification</title>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: #f5f5f5;
-    }
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      text-align: center;
-    }
-    h2 {
-      margin-bottom: 20px;
-    }
-    .token-box {
-      margin-top: 20px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      word-wrap: break-word;
-      background: #fafafa;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>Verify You're Human</h2>
+<html>
+  <head>
+    <title>reCAPTCHA demo: Simple page</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+  <body>
     <form action="?" method="POST">
-      <div class="g-recaptcha" 
-           data-sitekey="6Lesl6orAAAAAN0pTumsUsXj-dqbNGAsGb9Y2fgs" 
-           data-callback="onVerify">
-      </div>
+      <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+      <br/>
+      <input type="submit" value="Submit">
     </form>
-
-    <div class="token-box" id="tokenBox">
-      Token will appear here after verification
-    </div>
-  </div>
-
-  <script>
-    function onVerify(token) {
-      document.getElementById("tokenBox").textContent = token;
-      console.log("reCAPTCHA token:", token); // Debug
-      if (window.ReactNativeWebView) {
-       window.ReactNativeWebView.postMessage(token);
-      }
-    }
-  </script>
-</body>
+  </body>
 </html>
