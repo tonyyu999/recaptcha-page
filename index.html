@@ -53,9 +53,9 @@
   <script>
     function onVerify(token) {
       document.getElementById("tokenBox").textContent = token;
-      // Send token back to FlutterFlow via postMessage
-      if (window.ReactNativeWebView) {
-        window.ReactNativeWebView.postMessage(token);
+      // Send token back to FlutterFlow via InAppWebView handler
+      if (window.flutter_inappwebview) {
+        window.flutter_inappwebview.callHandler('recaptchaHandler', token);
       }
     }
   </script>
