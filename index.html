@@ -53,9 +53,9 @@
   <script>
     function onVerify(token) {
       document.getElementById("tokenBox").textContent = token;
-      console.log("reCAPTCHA token:", token); // Debug
+      // Send token back to FlutterFlow via postMessage
       if (window.ReactNativeWebView) {
-       window.ReactNativeWebView.postMessage(token);
+        window.ReactNativeWebView.postMessage(token);
       }
     }
   </script>
