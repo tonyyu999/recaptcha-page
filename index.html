@@ -41,7 +41,7 @@
     <form action="?" method="POST">
       <div class="g-recaptcha" 
            data-sitekey="6Lesl6orAAAAAN0pTumsUsXj-dqbNGAsGb9Y2fgs" 
-           data-callback="onVerify">
+           data-callback="onSubmit">
       </div>
     </form>
 
@@ -51,12 +51,9 @@
   </div>
 
   <script>
-    function onVerify(token) {
-      document.getElementById("tokenBox").textContent = token;
+    function onSubmit(token) {
+      window.flutter_inappwebview.callHandler('recaptchaHandler', token);
       // Send token back to FlutterFlow via postMessage
-      if (window.ReactNativeWebView) {
-        window.ReactNativeWebView.postMessage(token);
-      }
     }
   </script>
 </body>
