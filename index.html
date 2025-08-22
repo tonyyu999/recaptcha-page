@@ -52,7 +52,7 @@
 
   <script>
     function onSubmit(token) {
-       window.parent.postMessage(token, "*");
+       document.getElementById("tokenBox").innerText = token;
       // Send token back to FlutterFlow via postMessage
     }
   </script>
