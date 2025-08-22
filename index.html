@@ -6,14 +6,14 @@
   <body>
     <h2>Verify You're Human</h2>
 
-    <form id="captchaForm" action="https://x6xb-beqi-yqhh.n7e.xano.io/api:G88ukNNQ/auth/signup" method="POST">
+    <form id="captchaForm" action="https://x6xb-beqi-yqhh.n7e.xano.io/api:G88ukNNQ/verify_recaptcha" method="POST">
       <div class="g-recaptcha"
            data-sitekey="6Lesl6orAAAAAN0pTumsUsXj-dqbNGAsGb9Y2fgs"
            data-callback="onSubmit">
       </div>
 
       <!-- Hidden field for token -->
-      <input type="hidden" id="recaptchaToken" name="captcha_token">
+      <input type="hidden" id="recaptchaToken" name="token">
 
       <!-- Auto-submit button (hidden) -->
       <button type="submit" id="submitBtn" style="display:none;">Submit</button>
