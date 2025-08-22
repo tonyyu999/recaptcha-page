@@ -1,60 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>reCAPTCHA Verification</title>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: #f5f5f5;
-    }
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      text-align: center;
-    }
-    h2 {
-      margin-bottom: 20px;
-    }
-    .token-box {
-      margin-top: 20px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      word-wrap: break-word;
-      background: #fafafa;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
+<html>
+  <head>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+  </head>
+  <body>
     <h2>Verify You're Human</h2>
-    <form action="?" method="POST">
-      <div class="g-recaptcha" 
-           data-sitekey="6Lesl6orAAAAAN0pTumsUsXj-dqbNGAsGb9Y2fgs" 
+
+    <form id="captchaForm" action="https://YOUR_XANO_URL/verify_recaptcha" method="POST">
+      <div class="g-recaptcha"
+           data-sitekey="6Lesl6orAAAAAN0pTumsUsXj-dqbNGAsGb9Y2fgs"
            data-callback="onSubmit">
       </div>
+
+      <!-- Hidden field for token -->
+      <input type="hidden" id="recaptchaToken" name="token">
+
+      <!-- Auto-submit button (hidden) -->
+      <button type="submit" id="submitBtn" style="display:none;">Submit</button>
     </form>
 
-    <div class="token-box" id="tokenBox">
-      Token will appear here after verification
-    </div>
-  </div>
+    <script>
+      function onSubmit(token) {
+        // Put token into hidden input
+        document.getElementById("recaptchaToken").value = token;
 
-  <script>
-    function onSubmit(token) {
-       window.parent.postMessage(token, "*");
-      // Send token back to FlutterFlow via postMessage
-    }
-  </script>
-</body>
+        // Auto-submit the form to Xano
+        document.getElementById("submitBtn").click();
+      }
+    </script>
+  </body>
 </html>
